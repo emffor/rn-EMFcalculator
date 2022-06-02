@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "rn-EMFcalculator",
+    "slug": "rn-EMFcalculator",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
