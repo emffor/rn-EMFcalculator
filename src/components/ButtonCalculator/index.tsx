@@ -6,7 +6,7 @@ interface Props {
     text:string;
     color?: string;
     width?: boolean;
-    action: ( numeroTexto: string ) => void;
+    action: ( numberText: string ) => void;
 }
 
 export const ButtonCalculator = ({ 
