@@ -1,72 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, Image} from 'react-native';
-import { ButtonCalculator } from '../../components/ButtonCalculator';
+import { useCalculator } from '../../hooks';
 
 import { styles } from '../../theme';
 
+import { ButtonCalculator } from '../../components/ButtonCalculator';
+
 export const CalculatorScreen = () => {
-  const [previousNumber, setPreviousNumber] = useState('0');
-  const [ number, setNumber ] = useState( '0' );
 
-  const clear = () => {
-    setNumber( '0' );
-  }
-
-  const addNumber = ( numberText: string ) => {
-
-    //não aceitar dois pontos
-      if( number.includes('.') && numberText === '.' ) return; 
-      
-      //se o número for 0 ou -0, usuário não pode digitar mais nada
-      if( number.startsWith('0') || number.startsWith('-0')) {
-        
-        // ponto decimal
-        if( numberText === '.' ) {
-          setNumber(  number + numberText );
-
-          //avaliar se tem um ponto e numero atual
-         } else if (numberText === '0' && number.includes('.')) {
-              setNumber( number + numberText );
-
-          //avaliar se é diferente de zero e não tem um ponto
-         } else if (numberText !== '0' && !number.includes('.')) {
-              setNumber( numberText );
-
-            //0000.0
-         } else if( numberText === '0' && !number.includes('.') ) {
-              setNumber( number + numberText );
-
-              //qualquer numero depois do '0.'
-         } else {
-              setNumber( number + numberText );
-         }
-        
-      } else {
-        setNumber( number + numberText );
-      }
-  }
-
-  const positiveNegative = () => {
-    if( number.includes( '-' ) ) {
-      setNumber( number.replace( '-', '' ));
-    } else {
-      setNumber( '-' + number );
-    }
-  }
-
-  const btnDelete = () => {
-    let negativo = '';
-    let numeroTemp = number;
-    if ( number.includes('-') ) {
-        negativo = '-';
-        numeroTemp = number.substring(1);
-    }
-    if ( numeroTemp.length > 1 ) {
-        setNumber( negativo + numeroTemp.slice(0,-1) );
-    } else {
-        setNumber('0');
-    }
-  }
+  const { 
+    number,
+    previousNumber,
+    handleClear,
+    handleAddNumber,
+    handlePositiveNegative,
+    handleBtnDelete,
+    handleDiv,
+    handleMul,
+    handleSub,
+    handleSum,
+    calculate
+   } = useCalculator();
 
   return (
     <View style={styles.calculatorContainer}>
@@ -87,37 +41,37 @@ export const CalculatorScreen = () => {
         </Text>
 
       <View style={styles.row}>
-          <ButtonCalculator text="C" color="#1e5b9c"  action={ clear }/>
-          <ButtonCalculator text="+/-" color="#1e5b9c"  action={ positiveNegative }/>
-          <ButtonCalculator text="del" color="#1e5b9c"  action={ btnDelete }/>
-          <ButtonCalculator text="÷" color="#f24236"  action={() => {}}/>
+          <ButtonCalculator text="C" color="#1e5b9c"  action={ handleClear }/>
+          <ButtonCalculator text="+/-" color="#1e5b9c"  action={ handlePositiveNegative }/>
+          <ButtonCalculator text="del" color="#1e5b9c"  action={ handleBtnDelete }/>
+          <ButtonCalculator text="÷" color="#f24236"  action={ handleDiv }/>
       </View>
 
       <View style={styles.row}>
-          <ButtonCalculator text="7" color="#030b19"  action={ addNumber }/>
-          <ButtonCalculator text="8" color="#030b19"  action={ addNumber }/>
-          <ButtonCalculator text="9" color="#030b19"  action={ addNumber }/>
-          <ButtonCalculator text="x" color="#f24236"  action={() => {}}/>
+          <ButtonCalculator text="7" color="#030b19"  action={ handleAddNumber }/>
+          <ButtonCalculator text="8" color="#030b19"  action={ handleAddNumber }/>
+          <ButtonCalculator text="9" color="#030b19"  action={ handleAddNumber }/>
+          <ButtonCalculator text="x" color="#f24236"  action={ handleMul }/>
       </View>
 
       <View style={styles.row}>
-          <ButtonCalculator text="4" color="#030b19"  action={ addNumber }/>
-          <ButtonCalculator text="5" color="#030b19"  action={ addNumber }/>
-          <ButtonCalculator text="6" color="#030b19"  action={ addNumber }/>
-          <ButtonCalculator text="-" color="#f24236"  action={() => {}}/>
+          <ButtonCalculator text="4" color="#030b19"  action={ handleAddNumber }/>
+          <ButtonCalculator text="5" color="#030b19"  action={ handleAddNumber }/>
+          <ButtonCalculator text="6" color="#030b19"  action={ handleAddNumber }/>
+          <ButtonCalculator text="-" color="#f24236"  action={ handleSub }/>
       </View>
 
       <View style={styles.row}>
-          <ButtonCalculator text="1" color="#030b19"  action={ addNumber }/>
-          <ButtonCalculator text="2" color="#030b19"  action={ addNumber }/>
-          <ButtonCalculator text="3" color="#030b19"  action={ addNumber }/>
-          <ButtonCalculator text="+" color="#f24236"  action={() => {}}/>
+          <ButtonCalculator text="1" color="#030b19"  action={ handleAddNumber }/>
+          <ButtonCalculator text="2" color="#030b19"  action={ handleAddNumber }/>
+          <ButtonCalculator text="3" color="#030b19"  action={ handleAddNumber }/>
+          <ButtonCalculator text="+" color="#f24236"  action={ handleSum }/>
       </View>
 
       <View style={styles.row}>
-          <ButtonCalculator text="0" color="#030b19" width={true} action={ addNumber }/>
-          <ButtonCalculator text="." color="#030b19"  action={ addNumber }/>
-          <ButtonCalculator text="=" color="#f24236"  action={() => {}}/>
+          <ButtonCalculator text="0" color="#030b19" width={true} action={ handleAddNumber }/>
+          <ButtonCalculator text="." color="#030b19"  action={ handleAddNumber }/>
+          <ButtonCalculator text="=" color="#f24236"  action={ calculate }/>
       </View>
 
     </View>
