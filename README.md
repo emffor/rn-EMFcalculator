@@ -8,4 +8,8 @@
 - CSS
 - TypeScript
 
-![Simulator Screen Shot - iPhone 13 - 2022-06-03 at 11 42 44](https://user-images.githubusercontent.com/98027423/171879558-56012f04-8a47-4def-8ddb-a8fc85b724c6.png)
+
+
+<img src="https://user-images.githubusercontent.com/98027423/171922720-54bac287-d23a-474e-ba29-45813d37022a.png" height="649" width="300" align="center"/>
+
+
