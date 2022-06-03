@@ -27,7 +27,7 @@ export const CalculatorScreen = () => {
       <View style={styles.viewimage}>
         <Image
           style={styles.image}
-          source={require('../../assets/leaomosaico.png')}
+          source={require('../../assets/mosaico.png')}
         />
       </View>
 
@@ -44,34 +44,34 @@ export const CalculatorScreen = () => {
           <ButtonCalculator text="C" color="#1e5b9c"  action={ handleClear }/>
           <ButtonCalculator text="+/-" color="#1e5b9c"  action={ handlePositiveNegative }/>
           <ButtonCalculator text="del" color="#1e5b9c"  action={ handleBtnDelete }/>
-          <ButtonCalculator text="÷" color="#f24236"  action={ handleDiv }/>
+          <ButtonCalculator text="÷" color="#ec1638"  action={ handleDiv }/>
       </View>
 
       <View style={styles.row}>
           <ButtonCalculator text="7" color="#030b19"  action={ handleAddNumber }/>
           <ButtonCalculator text="8" color="#030b19"  action={ handleAddNumber }/>
           <ButtonCalculator text="9" color="#030b19"  action={ handleAddNumber }/>
-          <ButtonCalculator text="x" color="#f24236"  action={ handleMul }/>
+          <ButtonCalculator text="x" color="#ec1638"  action={ handleMul }/>
       </View>
 
       <View style={styles.row}>
           <ButtonCalculator text="4" color="#030b19"  action={ handleAddNumber }/>
           <ButtonCalculator text="5" color="#030b19"  action={ handleAddNumber }/>
           <ButtonCalculator text="6" color="#030b19"  action={ handleAddNumber }/>
-          <ButtonCalculator text="-" color="#f24236"  action={ handleSub }/>
+          <ButtonCalculator text="-" color="#ec1638"  action={ handleSub }/>
       </View>
 
       <View style={styles.row}>
           <ButtonCalculator text="1" color="#030b19"  action={ handleAddNumber }/>
           <ButtonCalculator text="2" color="#030b19"  action={ handleAddNumber }/>
           <ButtonCalculator text="3" color="#030b19"  action={ handleAddNumber }/>
-          <ButtonCalculator text="+" color="#f24236"  action={ handleSum }/>
+          <ButtonCalculator text="+" color="#ec1638"  action={ handleSum }/>
       </View>
 
       <View style={styles.row}>
           <ButtonCalculator text="0" color="#030b19" width={true} action={ handleAddNumber }/>
           <ButtonCalculator text="." color="#030b19"  action={ handleAddNumber }/>
-          <ButtonCalculator text="=" color="#f24236"  action={ calculate }/>
+          <ButtonCalculator text="=" color="#ec1638"  action={ calculate }/>
       </View>
 
     </View>
