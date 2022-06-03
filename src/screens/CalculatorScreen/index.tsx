@@ -17,7 +17,9 @@ export const CalculatorScreen = () => {
     //não aceitar dois pontos
       if( number.includes('.') && numberText === '.' ) return; 
       
+      //se o número for 0 ou -0, usuário não pode digitar mais nada
       if( number.startsWith('0') || number.startsWith('-0')) {
+        
         // ponto decimal
         if( numberText === '.' ) {
           setNumber(  number + numberText );
@@ -26,7 +28,7 @@ export const CalculatorScreen = () => {
          } else if (numberText === '0' && number.includes('.')) {
               setNumber( number + numberText );
 
-          //avaliar se é diferente de zero e tem um ponto
+          //avaliar se é diferente de zero e não tem um ponto
          } else if (numberText !== '0' && !number.includes('.')) {
               setNumber( numberText );
 
@@ -39,7 +41,6 @@ export const CalculatorScreen = () => {
               setNumber( number + numberText );
          }
         
-         
       } else {
         setNumber( number + numberText );
       }
@@ -53,7 +54,19 @@ export const CalculatorScreen = () => {
     }
   }
 
-
+  const btnDelete = () => {
+    let negativo = '';
+    let numeroTemp = number;
+    if ( number.includes('-') ) {
+        negativo = '-';
+        numeroTemp = number.substring(1);
+    }
+    if ( numeroTemp.length > 1 ) {
+        setNumber( negativo + numeroTemp.slice(0,-1) );
+    } else {
+        setNumber('0');
+    }
+  }
 
   return (
     <View style={styles.calculatorContainer}>
@@ -76,7 +89,7 @@ export const CalculatorScreen = () => {
       <View style={styles.row}>
           <ButtonCalculator text="C" color="#1e5b9c"  action={ clear }/>
           <ButtonCalculator text="+/-" color="#1e5b9c"  action={ positiveNegative }/>
-          <ButtonCalculator text="del" color="#1e5b9c"  action={() => {}}/>
+          <ButtonCalculator text="del" color="#1e5b9c"  action={ btnDelete }/>
           <ButtonCalculator text="÷" color="#f24236"  action={() => {}}/>
       </View>
 
